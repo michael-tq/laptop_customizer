@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Header from './components/Header';
+import LaptopSelection from './components/LaptopSelection'
 
 // Normalizes string as a slug - a string that is safe to use
 // in both URLs and html attributes
@@ -14,7 +16,11 @@ const USCurrencyFormat = new Intl.NumberFormat('en-US', {
 });
 
 class App extends Component {
-  state = {
+
+  constructor(props) {
+    super(props);
+  
+  this.state = {
     selected: {
       Processor: {
         name: '17th Generation Intel Core HB (7 Core with donut spare)',
@@ -33,6 +39,7 @@ class App extends Component {
         cost: 1500
       }
     }
+   }
   };
 
   updateFeature = (feature, newValue) => {
@@ -97,14 +104,20 @@ class App extends Component {
 
     return (
       <div className="App">
-        <header>
+        {/* <header>
           <h1>ELF Computing | Laptops</h1>
-        </header>
+        </header> */}
+        <Header />
         <main>
-          <form className="main__form">
+          {/* <form className="main__form">
             <h2>Customize your laptop</h2>
             {features}
-          </form>
+          </form> */}
+          <LaptopSelection 
+            features={features}
+            selected={this.state.selected}
+            onSelected={this.updateFeature} 
+          />
           <section className="main__summary">
             <h2>Your cart</h2>
             {summary}
